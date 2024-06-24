@@ -241,8 +241,8 @@ begin
         if CurrentState=S0_Init then
             ready <= '1';
         elsif CurrentState=S1_AcsL1V then
-            ready <= '0';               --<===============
-            
+            ready <= '0';               
+
             l1_cs       <= '1';
             victim_cs   <= '1';
             
@@ -264,7 +264,7 @@ begin
         elsif CurrentState= S2_L1EVCR then
             victim_cs           <= '1';
             victim_we           <= '1';
-            wx                  <= '0';        -- maybe useless
+            wx                  <= '0';        
             victim_addr         <= l1_addr_evc;
             victim_data_input   <= l1_data_output;
             victim_dirty_in     <= l1_dirty_out;
@@ -324,7 +324,7 @@ begin
         elsif CurrentState= S2_L1EVCW then
             victim_cs           <= '1';
             victim_we           <= '1';
-            wx                  <= '0';        -- maybe useless
+            wx                  <= '0';        
             victim_addr         <= l1_addr_evc;
             victim_data_input   <= l1_data_output;
             victim_dirty_in     <= l1_dirty_out;
@@ -346,7 +346,7 @@ begin
         elsif CurrentState= S2_L1EVCR1 then
             victim_cs           <= '1';
             victim_we           <= '1';
-            wx                  <= '0';        -- maybe useless
+            wx                  <= '0';        
             victim_addr         <= l1_addr_evc;
             victim_data_input   <= l1_data_output;
             victim_dirty_in     <= l1_dirty_out;
@@ -354,7 +354,7 @@ begin
         elsif CurrentState= S2_L1EVCW1 then
             victim_cs           <= '1';
             victim_we           <= '1';
-            wx                  <= '0';        -- maybe useless
+            wx                  <= '0';        
             victim_addr         <= l1_addr_evc;
             victim_data_input   <= l1_data_output;
             victim_dirty_in     <= l1_dirty_out;
