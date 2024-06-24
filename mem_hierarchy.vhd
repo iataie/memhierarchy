@@ -230,8 +230,6 @@ begin
     doState:process(CurrentState) is
 
     begin
-        --report "ready: " & std_logic'image(ready) severity note;
-        --print("ready: " & std_logic'image(ready));
         --reset signals
         ram_cs      <= '0';
         l1_cs       <= '0';
