@@ -190,7 +190,7 @@ begin
                     NextState <= S2_L1HITW;
                 elsif victim_hit = '1' and we='0' then     -- and  victim_evicted = '0' then
                     NextState <= S2_SWAPR;
-                elsif victim_hit = '1' then     -- and  victim_evicted = '0' then
+                elsif victim_hit = '1' then                -- and  victim_evicted = '0' then
                     NextState <= S2_SWAPW;
                 elsif  l1_evicted= '1' and victim_dirty_out = '1' and we ='0' then -- for read victim_hit = '0' and l1_hit = '0'
                     NextState <= S2_L1EVCR;
@@ -221,11 +221,9 @@ begin
     end process;
     SeqProcess:process(clk,cs) is
 
-    begin
-        --assert 4 = 2 + 2 report "clk: " & std_logic'image(clk) severity error; --none
+    begin        
         if falling_edge(clk) and (cs='1' or CurrentState/=S0_Init)  then
-            CurrentState <= NextState;
-            --ram_cs <='0';l1_cs<='0';victim_cs<='0';
+            CurrentState <= NextState;           
             report "State: " & enum_to_string(CurrentState);
         end if;
     end process SeqProcess;
