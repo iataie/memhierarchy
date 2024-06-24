@@ -94,11 +94,3 @@ begin
         end if;
     end process;
 end architecture;
-
-
---    readByIndexCmd: process(clk)
---    begin
---        if(cache_array(next_index).dirty='1' and cache_array(next_index).valid='1') then
---            data_out <= cache_array(i).data;
---            add_out <=  cache_array(i).tag;
---        end process;
