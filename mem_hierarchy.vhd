@@ -99,8 +99,6 @@ architecture behavioral of mem_hierarchy is
     SIGNAL index_out : STD_LOGIC_VECTOR (VCACHE_INDEX_SIZE-1 downto 0);
     Signal wx : STD_LOGIC:= '0';
     type statetype is (S0_Init , S1_AcsL1V ,S2_L1EVCR,S3_L1EVCR,S4_L1EVCR,S2_SWAPR,S2_SWAPW,S2_L1HITR,S2_L1HITW,S2_L1EVCW, S3_L1EVCW,S2_L1EVCR1,S2_L1EVCW1);
-    --attribute enum_encoding : string;
-    --attribute enum_encoding of statetype : type is "S0_Init S1_AcsL1V S2_L1EVCR S3_L1EVCR S4_L1EVCR S2_SWAPR S2_SWAPW S2_L1HITR S2_L1HITW S2_L1EVCW S3_L1EVCW S2_L1EVCR1 S2_L1EVCW1";
     signal CurrentState: statetype:=S0_Init;
     signal NextState: statetype;
     
