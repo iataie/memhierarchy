@@ -177,8 +177,7 @@ begin
     );
 
 
-    StateTransitionProcess:process(CurrentState,l1_hit,victim_hit,l1_evicted,victim_dirty_out)
-    
+    StateTransitionProcess:process(CurrentState,l1_hit,victim_hit,l1_evicted,victim_dirty_out)    
     begin
         case CurrentState is
             when S0_Init    => NextState <= S1_AcsL1V;
