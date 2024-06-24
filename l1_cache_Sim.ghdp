@@ -1,0 +1,122 @@
+Component l1_cache_tb()
+{
+    SIGNAL finished : STD_LOGIC:= '0';
+    CONSTANT period_time : TIME := 83333 ps;
+
+    Process Sim_finished()
+    {
+        wait for 100000 us;
+        finished <= '1';
+        wait;
+    }
+
+    NewComponent l1_cache
+    (
+        ADDR_WIDTH => ADDR_WIDTH,
+        DATA_WIDTH => DATA_WIDTH,
+        CACHE_SIZE => CACHE_SIZE,
+        clk => clk,
+        addr => addr,
+        data_in => data_in,
+        data_out => data_out,
+        we_cpu => we_cpu,
+        we_mem => we_mem,
+        we_vic => we_vic,
+        cs => cs,
+        hit => hit,
+        dirty_in => dirty,
+        ready => ready,
+    );
+
+    SIGNAL ADDR_WIDTH : natural  := 12;
+    SIGNAL DATA_WIDTH : natural  := 32;
+    SIGNAL CACHE_SIZE : natural  := 64;
+    SIGNAL clk : std_logic ;
+    SIGNAL addr : STD_LOGIC_VECTOR (ADDR_WIDTH-1 downto 0);
+    SIGNAL data_in : STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+    SIGNAL data_out : STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+    SIGNAL we_cpu,we_mem,we_vic : std_logic ;
+    SIGNAL cs : std_logic ;
+    SIGNAL hit : std_logic ;
+    SIGNAL ready : STD_LOGIC ;
+    SIGNAL dirty : STD_LOGIC ;
+
+    Process Sim_clk()
+    {
+        While(finished /= '1')
+        {
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_addr()
+    {
+        While(finished /= '1')
+        {
+            addr <= (1=>'1', others=>'0');
+            wait for 20 ms;
+            addr <= (1=>'1', others=>'0');
+            wait for 20 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_data_in()
+    {
+        While(finished /= '1')
+        {
+            data_in <= (0=>'1',1=>'1', others=>'0');
+            wait for 20 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_we()
+    {
+        While(finished /= '1')
+        {
+            we_cpu <= '1';
+            wait for 20 ms;
+            we_cpu <= '0';
+            wait for 20 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_cs()
+    {
+        While(finished /= '1')
+        {
+            cs <= '1';
+            wait for 100 ms;
+            wait;
+        }
+        wait;
+    }
+}

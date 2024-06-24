@@ -1,0 +1,156 @@
+Component victim_cache_tb()
+{
+    SIGNAL finished : STD_LOGIC:= '0';
+    CONSTANT period_time : TIME := 83333 ps;
+
+    Process Sim_finished()
+    {
+        wait for 100000 us;
+        finished <= '1';
+        wait;
+    }
+
+    NewComponent victim_cache
+    (
+        ADDR_WIDTH => ADDR_WIDTH,
+        DATA_WIDTH => DATA_WIDTH,
+        CACHE_SIZE => CACHE_SIZE,
+        CACHE_INDEX_SIZE => CACHE_INDEX_SIZE,
+        clk => clk,
+        addr => addr,
+        addr_evc => addr_evc,
+        index_in => index_in,
+        data_in => data_in,
+        data_out => data_out,
+        index_out => index_out,
+        we => we,
+        wx => wx,
+        cs => cs,
+        hit => hit,
+        ready => ready,
+        dirty_in => dirty_in,
+        dirty_out => dirty_out
+    );
+
+    SIGNAL ADDR_WIDTH : natural  := 12;
+    SIGNAL DATA_WIDTH : natural  := 32;
+    SIGNAL CACHE_SIZE : natural  := 8;
+    SIGNAL CACHE_INDEX_SIZE : natural  := 3;
+    SIGNAL clk : std_logic ;
+    SIGNAL addr : STD_LOGIC_VECTOR (ADDR_WIDTH-1 downto 0);
+    SIGNAL index_in : STD_LOGIC_VECTOR (CACHE_INDEX_SIZE-1 downto 0);
+    SIGNAL data_in : STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+    SIGNAL data_out : STD_LOGIC_VECTOR (DATA_WIDTH-1 downto 0);
+    SIGNAL index_out : STD_LOGIC_VECTOR (CACHE_INDEX_SIZE-1 downto 0);
+    SIGNAL we : std_logic ;
+    SIGNAL wx : std_logic ;
+    SIGNAL cs : std_logic ;
+    SIGNAL hit : std_logic ;
+    SIGNAL ready : STD_LOGIC ;
+    SIGNAL dirty_in : STD_LOGIC ;
+    SIGNAL dirty_out : STD_LOGIC ;
+    SIGNAL addr_evc : STD_LOGIC_VECTOR (ADDR_WIDTH-1 downto 0);
+
+    Process Sim_clk()
+    {
+        While(finished /= '1')
+        {
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            clk <= '0';
+            wait for 10 ms;
+            clk <= '1';
+            wait for 10 ms;
+            
+        }
+        wait;
+    }
+
+    Process Sim_addr()
+    {
+        While(finished /= '1')
+        {
+            addr <= (0=>'0', 1=>'1', others=>'0');
+            wait for 20 ms;
+            addr <= (0=>'0', 1=>'1', others=>'0');
+            wait for 15 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_addrx_in()
+    {
+        While(finished /= '1')
+        {
+            index_in <= (0=>'1', 1=>'1', others=>'0');
+            wait for 15 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_data_in()
+    {
+        While(finished /= '1')
+        {
+            data_in <= (0=>'1', 1=>'1', others=>'0');
+            wait for 15 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_we()
+    {
+        While(finished /= '1')
+        {
+            we <= '1';
+            wait for 15 ms;
+            we <= '0';
+            wait for 10 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_wx()
+    {
+        While(finished /= '1')
+        {
+            wx <= '1';
+            wait for 15 ms;
+            wait;
+        }
+        wait;
+    }
+
+    Process Sim_cs()
+    {
+        While(finished /= '1')
+        {
+            cs <= '1';
+            wait for 100 ms;
+            wait;
+        }
+        wait;
+    }
+    
+    Process Sim_dirty_in()
+    {
+        While(finished /= '1')
+        {
+            dirty_in <= '1';
+            wait for 15 ms;
+            dirty_in <= '0';
+            wait;
+        }
+        wait;
+    }
+}
