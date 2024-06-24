@@ -100,14 +100,3 @@ begin
         end if;
     end process;
 end architecture;
-
---    process(clk)
---    begin
---        if rising_edge(clk) then
---            for i in 0 to CACHE_SIZE-1 loop
---                if addr = cache_array(i).tag and cache_array(i).valid = '1' then
---                    data_out <= cache_array(i).data;
---                end if;
---            end loop;
---        end if;
---    end process;
