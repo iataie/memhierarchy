@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 
---  simulation config --std=02 --ieee=synopsys
+-- Simulation config --std=02 --ieee=synopsys
 -- Top-level memory hierarchy entity
 entity mem_hierarchy is
     generic (
