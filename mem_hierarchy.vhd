@@ -14,7 +14,6 @@ entity mem_hierarchy is
         L1CACHE_SIZE        : natural := 64;    -- Number of cache lines
         L1CACHE_INDEX_SIZE  : natural := 6;     -- Number of bits for addressing L1 Cache
         VCACHE_INDEX_SIZE   : natural := 3      -- Number of bits for addressing Victim Cache
-        --CACHE_INDEX_SIZE  : natural := natural(CEIL(LOG2(8.0))) --Number of bits for addressing Cache
     );
     port (
         clk      : in std_logic;
