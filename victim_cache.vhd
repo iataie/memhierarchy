@@ -10,8 +10,7 @@ entity victim_cache is
         ADDR_WIDTH       : natural := 12;   -- Address width in bits (cache index)
         DATA_WIDTH       : natural := 32;   -- Data width in bits
         CACHE_SIZE       : natural := 8;    -- Number of cache lines
-        --CACHE_INDEX_SIZE : natural := natural(CEIL(LOG2(8.0))) --Number of bits for addressing Chache
-        CACHE_INDEX_SIZE : natural := 3 --Number of bits for addressing Chache
+        CACHE_INDEX_SIZE : natural := 3     -- Number of bits for addressing Chache
     );
     port (
         clk      : in std_logic;
